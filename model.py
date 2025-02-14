@@ -206,6 +206,10 @@ def data_modeling(mode,**kwargs):
         model = LogisticMatrixFactorization(factors=f, regularization=reg, learning_rate=learning_rate,iterations=iterations)
         model.fit(user_item_data)
         
+        # 匯出模型model.pkl
+        import joblib
+        joblib.dump(model, 'model.pkl')
+        
         
         model_name = "free_gift"
    #    check = True
@@ -234,7 +238,7 @@ def data_modeling(mode,**kwargs):
 
             
              # 將上傳資料複製到all9fun_package資料夾
-            for file in ["model.py"]:
+            for file in ["model.py","model.pkl"]:
                 if os.path.exists(os.path.join(os.getcwd(),file)):
                     shutil.copy(os.path.join(os.getcwd(),file), os.path.join(path,"all9fun_package",file))
 
